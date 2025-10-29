@@ -1,0 +1,16 @@
+services:
+  frontend:
+    image: jeysonandresortiz/fundacion-joel-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: jeysonandresortiz/fundacion-joel-backend:latest
+    ports:
+      - "4242:4242"
+    env_file:
+      - ./backend/.env
+    environment:
+      - NODE_ENV=production

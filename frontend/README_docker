@@ -1,0 +1,59 @@
+## Fundación Joel - Despliegue con Docker
+
+## 🚀 Inicio Rápido
+
+### Requisitos previos
+- Docker Desktop instalado
+- Credenciales de Stripe
+
+### Pasos
+
+1. **Descargar el archivo `docker-compose.hub.yml`**
+
+2. **Crear estructura de carpetas:**
+```
+proyecto/
+├── docker-compose.hub.yml
+└── backend/
+    └── .env
+```
+
+3. **Crear `backend/.env` con tus credenciales:**
+```env
+STRIPE_SECRET_KEY=tu_clave_secreta_aqui
+FRONTEND_URL=http://localhost
+PORT=4242
+NODE_ENV=production
+```
+
+4. **Ejecutar:**
+```bash
+docker-compose -f docker-compose.hub.yml up
+```
+
+5. **Acceder a la aplicación:**
+- Frontend: http://localhost
+- Backend: http://localhost:4242
+
+## 🛑 Detener la aplicación
+```bash
+docker-compose -f docker-compose.hub.yml down
+```
+
+## 📦 Imágenes Docker Hub
+- Frontend: `jeysonandresortiz/fundacion-joel-frontend:latest`
+- Backend: `jeysonandresortiz/fundacion-joel-backend:latest`
+
+## 🔧 Solución de problemas
+
+### Puerto 80 ocupado
+Cambia el puerto del frontend en `docker-compose.hub.yml`:
+```yaml
+ports:
+  - "8080:80"  # Accede en http://localhost:8080
+```
+
+### Ver logs
+```bash
+docker-compose -f docker-compose.hub.yml logs -f
+```

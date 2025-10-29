@@ -1,0 +1,18 @@
+services:
+  frontend-dev:
+    container_name: react-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    # Agregar usuario para evitar problemas de permisos
+    user: "${UID:-1000}:${GID:-1000}"

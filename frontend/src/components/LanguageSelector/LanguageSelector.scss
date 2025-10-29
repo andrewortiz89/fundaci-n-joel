@@ -1,0 +1,127 @@
+// src/components/LanguageSelector.scss
+
+.language-selector {
+  display: none; // Oculto por defecto (en desktop está integrado en el navbar)
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 999; // Menor que el menú móvil (1100)
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .lang-button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+
+    .lang-flag {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .lang-name {
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(102, 126, 234, 0.1);
+      transform: scale(1.1);
+
+      .lang-flag {
+        transform: scale(1.2);
+      }
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+      .lang-flag {
+        transform: scale(1.15);
+        animation: flagWave 0.6s ease-out;
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+@keyframes flagWave {
+  0%, 100% {
+    transform: rotate(0deg) scale(1.15);
+  }
+  25% {
+    transform: rotate(-10deg) scale(1.15);
+  }
+  75% {
+    transform: rotate(10deg) scale(1.15);
+  }
+}
+
+// Responsive - SOLO MOSTRAR EN MÓVIL
+@media (max-width: 968px) {
+  .language-selector {
+    display: flex !important; // ⭐ Forzar display en tablets y móviles
+    top: 1rem;
+    right: 4.5rem; // Más a la izquierda para no tapar el menú hamburguesa
+    padding: 0.35rem;
+    z-index: 999;
+    gap: 0.25rem;
+
+    .lang-button {
+      padding: 0.45rem 0.6rem;
+      font-size: 0.85rem;
+      min-width: 32px;
+      height: 32px;
+
+      .lang-name {
+        display: none; // Solo mostrar banderas
+      }
+
+      .lang-flag {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+// Para pantallas muy pequeñas
+@media (max-width: 480px) {
+  .language-selector {
+    top: 0.5rem;
+    right: 0.75rem;
+    padding: 0.35rem;
+    gap: 0.3rem;
+
+    .lang-button {
+      padding: 0.4rem 0.6rem;
+      
+      .lang-flag {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

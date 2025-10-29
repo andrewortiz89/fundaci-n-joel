@@ -1,0 +1,468 @@
+@use "../../style/colors" as *;
+
+// DESKTOP NAVBAR
+.Navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $white-color;
+  width: 100%;
+  padding: 9px 0;
+  transition: 0.3s ease;
+  z-index: 1000;
+
+  .navbar__logo {
+    max-height: 120px;
+    width: auto;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .mobile__menu {
+    display: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1001;
+
+    img {
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .desktop__menu {
+    display: block;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        cursor: pointer;
+        padding: 2rem 2.7rem;
+        margin: 0 1rem;
+        transition: all 0.3s ease;
+        font-weight: 600; // ⭐ Peso medio para mejor legibilidad
+        letter-spacing: 0.3px; // ⭐ Espaciado entre letras
+        position: relative;
+        color: #1a1a1a;
+
+        // ⭐ NUEVO: Efecto de fondo al hover
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 0;
+          height: 0;
+          background: rgba(228, 104, 26, 0.08);
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          z-index: -1;
+        }
+
+        &:hover::before {
+          width: calc(100% - 1rem);
+          height: 75%;
+        }
+      }
+
+      li:last-child {
+        margin-right: 0;
+        padding-right: 0;
+      }
+
+      li:hover {
+        color: $red-color;
+        transform: translateY(-2px); // ⭐ Levanta ligeramente al hover
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(228, 104, 26, 0.05)
+        );
+      }
+
+      .active-link {
+        color: $red-color;
+        font-weight: 700; // ⭐ Negrita para el link activo
+        position: relative;
+
+        // ⭐ NUEVO: Sombra sutil para destacar
+        text-shadow: 0 1px 2px rgba(228, 104, 26, 0.1);
+      }
+    }
+  }
+}
+
+.extraLargeNavbar {
+  padding: 15px 0;
+}
+
+.navbar__language-selector {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  margin-left: 1rem !important;
+  padding: 1rem 1.5rem !important;
+  border-left: 2px solid rgba(228, 104, 26, 0.2);
+
+  .lang-btn {
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+
+    .lang-flag {
+      font-size: 1.3rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(228, 104, 26, 0.1);
+      transform: scale(1.15);
+
+      .lang-flag {
+        transform: scale(1.1);
+      }
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #e4681a, #f5576c);
+      border-color: transparent;
+      box-shadow: 0 3px 12px rgba(228, 104, 26, 0.4);
+
+      .lang-flag {
+        transform: scale(1.1);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
+}
+
+// MOBILE NAVBAR
+.mobile__navbar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  background-color: #00000096;
+  z-index: 1100;
+  width: 50%;
+  transition: 0.4s ease;
+  padding: 20px;
+  overflow-y: auto;
+
+  .mobile__navbar-close {
+    padding: 20px;
+    margin-right: 80%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+
+    img {
+      min-width: 30px;
+      height: auto;
+    }
+  }
+
+  .mobile__navbar-logo {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+
+    img {
+      max-width: 150px;
+      height: auto;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .mobile__navbar-menu {
+    padding-top: 20%;
+
+    ul {
+      li {
+        cursor: pointer;
+        color: $white-color;
+        font-size: 2.5rem;
+        padding: 5% 0;
+        transition: all 0.3s ease;
+      }
+
+      li:hover {
+        color: $main-color;
+        transform: translateX(10px);
+      }
+
+      .active-link {
+        color: $main-color;
+        font-weight: 700;
+      }
+
+      .navbar__language-selector-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+        padding: 15px 0;
+
+        .lang-btn {
+          background: rgba(245, 231, 187, 0.1);
+          border: 1px solid transparent;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          padding: 0;
+
+          .lang-flag {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+          }
+
+          &:hover {
+            background: rgba(228, 104, 26, 0.1);
+            transform: scale(1.1);
+
+            .lang-flag {
+              transform: scale(1.1);
+            }
+          }
+
+          &.active {
+            background: linear-gradient(135deg, #e4681a, #f5576c);
+            border-color: transparent;
+            box-shadow: 0 3px 12px rgba(228, 104, 26, 0.4);
+
+            .lang-flag {
+              transform: scale(1.1);
+              filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.mobile__open {
+  right: 0;
+}
+
+// BACKDROP
+.backdrop {
+  width: 100%;
+  height: 100vh;
+  background-color: $black-color;
+  opacity: 0.8;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1050;
+  display: none;
+}
+
+.backdrop__open {
+  display: block;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: 1rem;
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    img {
+      width: 28px;
+      height: 20px;
+      border-radius: 3px;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+
+    img:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// ⭐ NUEVO: MEDIA QUERIES PARA PANTALLAS MEDIANAS (1200px - 1400px)
+@media screen and (max-width: 1400px) {
+  .Navbar {
+    .navbar__logo {
+      max-height: 80px; // Logo más pequeño para dar espacio al texto
+    }
+
+    .desktop__menu ul li {
+      padding: 2rem 1.4rem; // Reducir padding horizontal
+      margin: 0 0.3rem; // Reducir margin
+      font-size: 1.1rem; // Texto grande y legible
+    }
+
+    .navbar__language-selector {
+      padding: 1rem 0.8rem !important; // Reducir padding del selector
+      margin-left: 0.3rem !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .Navbar {
+    .navbar__logo {
+      max-height: 70px; // Logo más pequeño
+    }
+
+    .desktop__menu ul li {
+      padding: 1.5rem 1.1rem; // Menos padding
+      margin: 0 0.25rem; // Menos margen
+      font-size: 1.05rem; // Texto grande
+    }
+
+    .navbar__language-selector {
+      padding: 1rem 0.6rem !important;
+      margin-left: 0.25rem !important;
+
+      .lang-btn {
+        width: 32px; // Botones más pequeños
+        height: 32px;
+
+        .lang-flag {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Navbar {
+    .navbar__logo {
+      max-height: 65px;
+    }
+
+    .desktop__menu ul li {
+      padding: 1.2rem 0.9rem;
+      margin: 0 0.2rem;
+      font-size: 1rem; // Tamaño legible
+    }
+
+    .navbar__language-selector {
+      gap: 0.2rem;
+      padding: 1rem 0.5rem !important;
+      margin-left: 0.2rem !important;
+    }
+  }
+}
+
+// ⭐ MEDIA QUERY PARA TABLETS
+@media screen and (max-width: 968px) {
+  .navbar__language-selector {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .Navbar {
+    .mobile__menu {
+      display: block;
+    }
+
+    .desktop__menu {
+      display: none;
+    }
+
+    .navbar__logo {
+      max-height: 50px;
+    }
+  }
+
+  .mobile__navbar {
+    width: 70%;
+
+    .mobile__navbar-menu {
+      ul li {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Navbar {
+    .navbar__logo {
+      max-height: 45px;
+    }
+  }
+
+  .mobile__navbar {
+    width: 80%;
+
+    .mobile__navbar-menu {
+      padding-top: 15%;
+
+      ul li {
+        font-size: 1.8rem;
+        padding: 4% 0;
+      }
+    }
+
+    .mobile__navbar-logo img {
+      max-width: 120px;
+    }
+  }
+}
+
+// ANIMACIONES PARA LOS ITEMS DEL MENÚ MÓVIL
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mobile__navbar.mobile__open {
+  .mobile__navbar-menu ul li {
+    animation: slideInFromLeft 0.4s ease-out forwards;
+    opacity: 0;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.08}s;
+      }
+    }
+  }
+}

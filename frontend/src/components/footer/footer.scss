@@ -1,0 +1,95 @@
+@use '../../style/colors' as *;
+
+.footer {
+  background-color: #020202;
+  padding: 40px 0; // Espaciado superior e inferior
+  color: $white-color; // Usando variable de color
+
+  .wrapper {
+    display: flex; // Usamos flexbox para apilar y centrar
+    flex-direction: column; // Apila los elementos verticalmente
+    align-items: center; // Centra los elementos horizontalmente
+    justify-content: center; // Centra los elementos verticalmente (si hay espacio adicional)
+    max-width: 90%; // limita el ancho máximo del contenido
+    margin: 0 auto; // Centra el wrapper si tiene un max-width
+    text-align: center; // Asegura que el texto dentro de los contenedores se centre
+  }
+
+  .footer__logo-container {
+    margin-bottom: 30px; // Espacio debajo del logo
+    
+    .footer__logo {
+      max-width: 120px; // Tamaño del logo en la imagen
+      height: auto; // Mantiene la proporción
+    }
+  }
+
+  .footer__text-content {
+    margin-bottom: 25px; // Espacio debajo del texto de copyright
+    
+    p {
+      font-size: 0.85rem; // Tamaño de fuente para el copyright
+      line-height: 1.5; // Espaciado de línea para mejor lectura
+      margin: 0; // Elimina márgenes por defecto
+    }
+  }
+
+  .footer__links {
+    ul {
+      list-style: none; // Elimina los puntos de la lista
+      padding: 0; // Elimina el padding por defecto de la lista
+      margin: 0; // Elimina el margen por defecto de la lista
+      display: flex; // Usa flexbox para los enlaces
+      flex-wrap: wrap; // Permite que los enlaces pasen a la siguiente línea si no caben
+      justify-content: center; // Centra los enlaces horizontalmente
+
+      li {
+        font-size: 0.8rem; // Tamaño de fuente para los enlaces
+        margin: 0 10px; // Espacio horizontal entre los enlaces
+        position: relative; // Para posicionar el separador vertical
+
+        &:not(:last-child)::after { // Añade el separador vertical a todos menos al último
+          content: "|";
+          position: absolute;
+          right: -10px; // Posiciona el separador a la derecha del enlace
+          color: $white-color; // Usando variable de color
+        }
+
+        a {
+          color: $white-color; // Usando variable de color
+          text-decoration: none; // Sin subrayado
+          &:hover {
+            text-decoration: underline; // Subrayado al pasar el mouse
+          }
+        }
+      }
+    }
+  }
+}
+
+// Media Queries para responsividad
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 30px 0; // Ajusta el padding para móviles
+    .footer__logo-container {
+      margin-bottom: 20px;
+    }
+    .footer__text-content {
+      margin-bottom: 20px;
+      p {
+        font-size: 0.8rem;
+      }
+    }
+    .footer__links {
+      ul {
+        flex-direction: column; // Apila los enlaces en móviles
+        li {
+          margin: 5px 0; // Espacio vertical entre enlaces
+          &:not(:last-child)::after { // Elimina el separador vertical en móvil si se apilan
+            content: none; 
+          }
+        }
+      }
+    }
+  }
+}

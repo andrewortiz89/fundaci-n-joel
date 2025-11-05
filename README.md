@@ -34,7 +34,6 @@ Aplicación web full-stack para la Fundación Joel con sistema de donaciones int
 ## 🚀 Tecnologías
 
 ### Frontend
-
 - **React.js 18** - Framework UI
 - **SCSS** - Estilos
 - **React Router** - Navegación
@@ -42,13 +41,11 @@ Aplicación web full-stack para la Fundación Joel con sistema de donaciones int
 - **Nginx** - Servidor web en producción
 
 ### Backend
-
 - **Node.js 18** - Runtime
 - **Express** - Framework web
 - **Stripe API** - Procesamiento de pagos
 
 ### DevOps
-
 - **Docker** - Containerización
 - **Docker Compose** - Orquestación
 - **Docker Hub** - Registro de imágenes
@@ -203,7 +200,6 @@ docker-compose -f docker-compose.dev.yml up --build
 ```
 
 Accede a:
-
 - Frontend: http://localhost:3000 (hot-reload activo)
 - Backend: http://localhost:4242 (nodemon activo)
 
@@ -234,6 +230,43 @@ fundaci-n-joel/
 ```
 
 ## 🐛 Troubleshooting
+### Error: "TLS handshake timeout" al descargar imágenes de Docker
+
+**Síntomas**: 
+```
+ERROR: failed to solve: node:18-alpine: failed to resolve source metadata
+net/http: TLS handshake timeout
+```
+
+**Causa**: Problemas de conexión con Docker Hub o timeout en la descarga.
+
+**Soluciones**:
+
+1. **Reintentar** (solución más común):
+```bash
+docker system prune -f
+docker-compose up --build
+```
+
+2. **Pre-descargar imágenes manualmente**:
+```bash
+docker pull node:18.20.5-alpine3.20
+docker pull nginx:1.27.3-alpine
+docker-compose up --build
+```
+
+3. **Aumentar timeout de Docker**:
+```bash
+export DOCKER_CLIENT_TIMEOUT=300
+export COMPOSE_HTTP_TIMEOUT=300
+docker-compose up --build
+```
+
+4. **Usar imágenes precompiladas de Docker Hub** (solución más rápida):
+```bash
+docker-compose -f docker-compose.hub.yml up
+```
+Esta opción descarga las imágenes ya construidas sin necesidad de compilar.
 
 ### Puerto 80 ya está en uso
 
@@ -242,7 +275,7 @@ fundaci-n-joel/
 ```yaml
 frontend:
   ports:
-    - "8080:80" # Accede en http://localhost:8080
+    - "8080:80"  # Accede en http://localhost:8080
 ```
 
 ### Puerto 4242 ya está en uso
@@ -252,9 +285,9 @@ frontend:
 ```yaml
 backend:
   ports:
-    - "5000:4242" # Accede en http://localhost:5000
+    - "5000:4242"  # Accede en http://localhost:5000
   environment:
-    - PORT=4242 # Mantén este valor
+    - PORT=4242  # Mantén este valor
 ```
 
 ### Los videos no cargan o son lentos
@@ -284,13 +317,14 @@ cd fundaci-n-joel
 docker-compose up --build
 ```
 
+
 ## 📝 Licencia
 
 Este proyecto es propiedad de Fundación Joel. Todos los derechos reservados.
 
 ## 👤 Autor
 
-**Andres Ortiz**
-
+**Andrew Ortiz**
 - GitHub: [@andrewortiz89](https://github.com/andrewortiz89)
 - Docker Hub: [@jeysonandresortiz](https://hub.docker.com/u/jeysonandresortiz)
+

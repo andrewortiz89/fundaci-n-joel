@@ -1,12 +1,12 @@
 # Etapa 1: Construcción del proyecto React
-FROM node:18-alpine as build
+FROM node:18.20.5-alpine3.20 as build
 
 WORKDIR /app
 
 # Copiar archivos de dependencias
 COPY package*.json ./
 
-# ⭐ CAMBIO: Instalar TODAS las dependencias (incluyendo devDependencies) para el build
+# Instalar TODAS las dependencias (incluyendo devDependencies) para el build
 RUN npm ci && npm cache clean --force
 
 # Copiar el resto del código fuente
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Etapa 2: Servidor Nginx para producción
-FROM nginx:alpine
+FROM nginx:1.27.3-alpine
 
 # Copiar configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -28,4 +28,4 @@ COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 
 # Comando por defecto para iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]"-g", "daemon off;"]

@@ -12,6 +12,9 @@ Aplicación web full-stack para la Fundación Joel con sistema de donaciones int
 ![Node.js](https://img.shields.io/badge/Node.js-18-339933?logo=node.js)
 ![Nginx](https://img.shields.io/badge/Nginx-Alpine-009639?logo=nginx)
 
+<img width="1903" height="897" alt="pantallafinal" src="https://github.com/user-attachments/assets/17b7ad73-6d48-433f-9bea-8f9cc4512ef9" />
+
+
 ## 📋 Tabla de Contenidos
 
 - [Características](#características)

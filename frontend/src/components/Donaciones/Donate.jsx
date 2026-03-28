@@ -8,6 +8,9 @@ function DonateButton() {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("usd");
 
+  // ✅ USA LA VARIABLE DE ENTORNO
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:4242";
+
   const handleDonate = async () => {
     const numericAmount = parseFloat(amount);
 
@@ -19,7 +22,8 @@ function DonateButton() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4242/create-checkout-session", {
+      // ✅ USA LA VARIABLE EN LUGAR DE HARDCODEAR
+      const response = await fetch(`${BACKEND_URL}/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

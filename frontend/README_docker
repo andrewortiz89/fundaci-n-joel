@@ -57,3 +57,4 @@ ports:
 ```bash
 docker-compose -f docker-compose.hub.yml logs -f
 ```
+
